@@ -35,14 +35,15 @@
   bottom: 0;
   position: fixed;
   img {
-    width: 50%;
+    max-height: 70vh;
+    max-width: 50vw;
   }
 }
 
 .button-container {
   position: fixed;
   left: 44vw;
-  top: 50vh;
+  top: 44vh;
 }
 
 .button {
