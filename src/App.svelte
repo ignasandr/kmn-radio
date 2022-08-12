@@ -23,7 +23,7 @@
         <audio
           bind:this={audio}
           bind:paused
-          src={"https://radijas.kmn.lt/listen/kombinatas_radio/radio.mp3"}
+          src={"https://radijas.kmn.lt/listen/sapfo_radijas/radio.mp3"}
         />
     </div>
     </div>
@@ -35,7 +35,7 @@
   bottom: 0;
   position: fixed;
   img {
-    max-height: 70vh;
+    max-height: 30vh;
     max-width: 50vw;
   }
 }
