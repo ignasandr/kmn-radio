@@ -1,5 +1,6 @@
 <script>
   import logo from "./assets/logo.png"
+  import logo_new from "./assets/logo_new.png"
 
   let audio;
   let paused = true;
@@ -7,30 +8,33 @@
   const togglePlay = () => {
     if (paused) {
       audio.play();
+      paused = false;
     }
     else {
       audio.pause();
+      paused = true;
     }
   }
 </script>
 
 <main>
-  <div class="image-container">
+  <!-- <div class="image-container">
     <img src={logo} alt="Kombinatas logo">
-  </div>
+  </div> -->
   <div class="button-container">
-    <div role = "button" tabIndex={0} id="button" class={paused ? "button" : "button pause"} on:click={togglePlay}>
+    <div role = "button" tabIndex={0} id="button" class="button"  on:click={togglePlay}>
+      <img src={logo_new} alt="PLAY" class={paused ? "pause" : "play"}/>
         <audio
           bind:this={audio}
           bind:paused
           src={"https://radijas.kmn.lt/listen/sapfo_radijas/radio.mp3"}
         />
     </div>
-    </div>
+  </div>
 </main>
 
 <style lang="scss">
-.image-container {
+/* .image-container {
   left: 0;
   bottom: 0;
   position: fixed;
@@ -38,31 +42,40 @@
     max-height: 30vh;
     max-width: 50vw;
   }
-}
+} */
 
 .button-container {
-  position: fixed;
+  /* position: fixed;
   left: 44vw;
-  top: 44vh;
+  top: 44vh; */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .button {
-  box-sizing: border-box;
-  height: 74px;
-  
-  border-color: transparent transparent transparent #f37021;
-  transition: 100ms all ease;
-  will-change: border-width;
-  cursor: pointer;
-
+    cursor: pointer;
   // play state
-  border-style: solid;
-  border-width: 37px 0 37px 60px;
+  img {
+    max-height: 30vh;
+    transition: 300ms all ease;
 
-  // paused state
-  &.pause {
-    border-style: double;
-    border-width: 0px 0 0px 60px;
+/* Disable grayscale on hover */
+    &.play {
+      filter: none;
+    }
+
+    &.pause {
+      filter: gray; /* IE6-9 */
+      -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+      filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+    }
+  &:hover {
+    -webkit-filter: grayscale(0);
+    filter: none;
+  }
   }
 }
 </style>
