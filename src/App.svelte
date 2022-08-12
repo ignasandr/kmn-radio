@@ -61,21 +61,14 @@
   img {
     max-height: 30vh;
     transition: 300ms all ease;
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+    filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
 
 /* Disable grayscale on hover */
     &.play {
       filter: none;
     }
-
-    &.pause {
-      filter: gray; /* IE6-9 */
-      -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
-      filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
-    }
-  &:hover {
-    -webkit-filter: grayscale(0);
-    filter: none;
-  }
   }
 }
 </style>
