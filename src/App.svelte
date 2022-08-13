@@ -1,26 +1,42 @@
 <script>
-  import logo from "./assets/logo.png"
+import {onMount, onDestroy} from 'svelte'
+
   import logo_new from "./assets/logo_new.png"
 
   let audio;
   let paused = true;
 
+  let timer = 0;
+
+  let timeout = false;
+  let notified = false;
+
+  const interval = setInterval(() => timer += 1, 1000);
+  $: if(paused && !notified && timer >= 5) 
+    {
+      timeout = true;
+      notified = true;
+    };
+
+	onDestroy(() => {
+		clearInterval(interval);
+	});
+
+
   const togglePlay = () => {
     if (paused) {
       audio.play();
-      paused = false;
+      timeout = false;
+      notified = true;
     }
     else {
       audio.pause();
-      paused = true;
     }
   }
+
 </script>
 
 <main>
-  <!-- <div class="image-container">
-    <img src={logo} alt="Kombinatas logo">
-  </div> -->
   <div class="button-container">
     <div role = "button" tabIndex={0} id="button" class="button"  on:click={togglePlay}>
       <img src={logo_new} alt="PLAY" class={paused ? "pause" : "play"}/>
@@ -30,24 +46,12 @@
           src={"https://radijas.kmn.lt/listen/sapfo_radijas/radio.mp3"}
         />
     </div>
-  </div>
+    <div class={timeout ? "warning true" : "warning"} > ↑ Listen here ↑ </div>
 </main>
 
 <style lang="scss">
-/* .image-container {
-  left: 0;
-  bottom: 0;
-  position: fixed;
-  img {
-    max-height: 30vh;
-    max-width: 50vw;
-  }
-} */
 
 .button-container {
-  /* position: fixed;
-  left: 44vw;
-  top: 44vh; */
   position: absolute;
   left: 50%;
   top: 50%;
@@ -57,7 +61,6 @@
 
 .button {
     cursor: pointer;
-  // play state
   img {
     max-height: 30vh;
     transition: 300ms all ease;
@@ -65,10 +68,27 @@
     -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
     filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
 
-/* Disable grayscale on hover */
+  // play state
     &.play {
       filter: none;
     }
   }
 }
+
+.warning {
+  margin-top: 10px;
+  color: #d94814;
+  width: 100%;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0%;
+  &.true {
+    visibility: visible;
+    opacity: 100%;
+    margin-top: 20px;
+  }
+  transition: 600ms all ease;
+} 
+
+
 </style>
