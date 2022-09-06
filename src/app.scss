@@ -8,7 +8,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #fff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,6 +17,11 @@
   -webkit-text-size-adjust: 100%;
 }
 
+@font-face {
+    font-family: "NeueMachina";
+    src: url("../src/assets/fonts/NeueMachina-Medium.woff2");
+    font-weight: 600;
+}
 
 body {
   margin: 0;
