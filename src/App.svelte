@@ -43,10 +43,10 @@ import {onMount, onDestroy} from 'svelte'
         <audio
           bind:this={audio}
           bind:paused
-          src={"https://radijas.kmn.lt/listen/sapfo_radijas/radio.mp3"}
+          src={"https://radioadmin.kmn.lt:8443/main"}
         />
     </div>
-    <div class={timeout ? "warning true" : "warning"} > ↑ Listen here ↑ </div>
+    <div class={timeout ? "warning true" : "warning"} >↑ Spauskite čia ↑</div>
 </main>
 
 <style lang="scss">
@@ -62,7 +62,8 @@ import {onMount, onDestroy} from 'svelte'
 .button {
     cursor: pointer;
   img {
-    max-height: 30vh;
+    max-height: 15vh;
+    max-width: 60vw;
     transition: 300ms all ease;
     filter: gray; /* IE6-9 */
     -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
@@ -76,8 +77,10 @@ import {onMount, onDestroy} from 'svelte'
 }
 
 .warning {
+  font-family: "NeueMachina";
   margin-top: 10px;
-  color: #d94814;
+  color: #245aa9;
+  font-weight: 600;
   width: 100%;
   text-align: center;
   visibility: hidden;
@@ -85,7 +88,6 @@ import {onMount, onDestroy} from 'svelte'
   &.true {
     visibility: visible;
     opacity: 100%;
-    margin-top: 20px;
   }
   transition: 600ms all ease;
 } 
